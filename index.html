@@ -517,64 +517,38 @@
         animateWave();
 
         async function checkLiveStatus() {
-            try {
-                // Call your PHP backend instead of trying to call APIs directly
-                const response = await fetch('check-live-status.php');
-                
-                if (!response.ok) {
-                    console.log('⚠️ Backend not responding');
-                    return;
-                }
-                
-                const data = await response.json();
-                
-                // Update Chaturbate badge
-                const chaturbateBadge = document.getElementById('chaturbateLiveBadge');
-                if (data.chaturbate.isLive) {
-                    chaturbateBadge.classList.add('show');
-                    console.log('✅ Chaturbate: LIVE');
-                } else {
-                    chaturbateBadge.classList.remove('show');
-                    console.log('⭕ Chaturbate: Offline');
-                }
-                
-                // Update Stripchat badge
-                const stripchatBadge = document.getElementById('stripchatLiveBadge');
-                if (data.stripchat.isLive) {
-                    stripchatBadge.classList.add('show');
-                    console.log('✅ Stripchat: LIVE');
-                } else {
-                    stripchatBadge.classList.remove('show');
-                    console.log('⭕ Stripchat: Offline');
-                }
-                
-                console.log('Last checked:', data.checked_at);
-                
-            } catch (error) {
-                console.error('Error checking live status:', error);
-                console.log('💡 Make sure check-live-status.php is uploaded to your server');
-            }
+            // This function is kept for future automation if you set up a backend later
+            // For now, it does nothing and you'll use bookmarks instead
+            console.log('💡 Use bookmarks to control live badges:');
+            console.log('   🔴 Go Live bookmark - Shows badges');
+            console.log('   ⭕ Go Offline bookmark - Hides badges');
         }
 
-        // Manual controls for testing/backup
+        // Manual controls - THIS IS WHAT THE BOOKMARKS USE
         window.setLiveBadge = function(platform, isLive) {
             const badge = document.getElementById(platform + 'LiveBadge');
             if (badge) {
                 if (isLive) {
                     badge.classList.add('show');
-                    console.log(`✅ ${platform} badge manually set to LIVE`);
+                    console.log(`✅ ${platform} badge is now LIVE`);
                 } else {
                     badge.classList.remove('show');
-                    console.log(`⭕ ${platform} badge manually set to OFFLINE`);
+                    console.log(`⭕ ${platform} badge is now OFFLINE`);
                 }
             }
         };
 
+        // Initial check on page load (does nothing for now)
         checkLiveStatus();
+        
+        // Check every 2 minutes (does nothing for now, but ready for future backend)
         setInterval(checkLiveStatus, 120000);
 
-        // Log instructions
-        console.log('💡 Manual controls available:');
+        // Show instructions when page loads
+        console.log('🎬 Moonsire Live Status System');
+        console.log('📌 Use your bookmarks to control live badges!');
+        console.log('');
+        console.log('Manual commands (if needed):');
         console.log('   setLiveBadge("chaturbate", true)  - Show Chaturbate badge');
         console.log('   setLiveBadge("chaturbate", false) - Hide Chaturbate badge');
         console.log('   setLiveBadge("stripchat", true)   - Show Stripchat badge');
