@@ -32,6 +32,41 @@
       min-height: 100vh;
       padding: 20px;
       color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(138, 98, 178, 0.3) 0%, transparent 70%);
+      animation: waveDiagonal 9s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes waveDiagonal {
+      0% {
+        top: -100%;
+        left: -30%;
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      50% {
+        top: 50%;
+        left: 20%;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        top: 200%;
+        left: 70%;
+        opacity: 0;
+      }
     }
 
     body::before {
@@ -73,6 +108,45 @@
       text-align: center;
       margin-bottom: 40px;
       animation: fadeIn 0.6s ease;
+      position: relative;
+    }
+
+    .live-badge {
+      position: absolute;
+      top: 90px;
+      right: 50%;
+      transform: translateX(80px);
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
+      animation: livePulse 2s ease-in-out infinite;
+      display: none;
+      z-index: 10;
+    }
+
+    .live-badge.show {
+      display: block;
+    }
+
+    .live-badge::before {
+      content: '●';
+      margin-right: 6px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { transform: translateX(80px) scale(1); }
+      50% { transform: translateX(80px) scale(1.05); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
     .profile-img {
@@ -88,6 +162,20 @@
       margin-left: auto;
       margin-right: auto;
       overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 20px rgba(138, 98, 178, 0.4);
+      animation: profileGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes profileGlow {
+      0%, 100% { 
+        box-shadow: 0 0 20px rgba(138, 98, 178, 0.4);
+        border-color: rgba(255,255,255,0.3);
+      }
+      50% { 
+        box-shadow: 0 0 30px rgba(138, 98, 178, 0.7);
+        border-color: rgba(255,255,255,0.5);
+      }
     }
 
     .profile-img img {
@@ -129,25 +217,39 @@
       cursor: pointer;
       border-radius: 8px;
       transition: all 0.3s ease;
+      position: relative;
     }
 
     .nav-tab.active {
       background: rgba(255,255,255,0.95);
       color: #2d1b4e;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
     .nav-tab:hover:not(.active) {
       background: rgba(255,255,255,0.15);
       color: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
 
     .tab-content {
       display: none;
-      animation: fadeIn 0.4s ease;
     }
 
     .tab-content.active {
       display: block;
+      animation: slideIn 0.4s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .link-card {
@@ -166,13 +268,35 @@
       transition: all 0.3s ease;
       color: #fff;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%) translateY(-100%);
+      transition: transform 0.6s;
+    }
+
+    .link-card:hover::before {
+      transform: translateX(0) translateY(0);
     }
 
     .link-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
+      border-color: rgba(255,255,255,0.3);
     }
 
     .link-icon {
@@ -184,6 +308,14 @@
       justify-content: center;
       font-size: 24px;
       flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .link-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
     }
 
     .link-text {
@@ -239,13 +371,41 @@
       text-decoration: none;
       transition: all 0.3s ease;
       color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donate-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%) translateY(-100%);
+      transition: transform 0.6s;
+    }
+
+    .donate-card:hover::before {
+      transform: translateX(0) translateY(0);
     }
 
     .donate-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2) 50%, transparent);
+      margin: 40px 0;
     }
 
     .donate-icon {
@@ -302,6 +462,7 @@
 <body>
   <div class="container">
     <div class="profile">
+      <div class="live-badge" id="liveBadge">Live Now</div>
       <div class="profile-img">
         <img src="profile.jpg" alt="Moonsire">
       </div>
@@ -330,7 +491,9 @@
 
     <div id="links" class="tab-content">
       <a href="https://chaturbate.com/moonsire" target="_blank" class="link-card">
-        <div class="link-icon" style="background: #F47321;">🎥</div>
+        <div class="link-icon" style="background: #F47321;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">Chaturbate</div>
           <div class="link-desc">Live streams</div>
@@ -338,15 +501,21 @@
       </a>
 
       <a href="https://stripchat.com/Moonsire1" target="_blank" class="link-card">
-        <div class="link-icon" style="background: #7B68EE;">💜</div>
+        <div class="link-icon" style="background: #7B68EE;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">Stripchat</div>
           <div class="link-desc">Live shows</div>
         </div>
       </a>
 
+      <div class="section-divider"></div>
+
       <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-        <div class="link-icon" style="background: #00AFF0;">🔥</div>
+        <div class="link-icon" style="background: #00AFF0;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">OnlyFans</div>
           <div class="link-desc">Coming soon</div>
@@ -354,7 +523,9 @@
       </a>
 
       <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-        <div class="link-icon" style="background: #0F7FFF;">💎</div>
+        <div class="link-icon" style="background: #0F7FFF;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">Fansly</div>
           <div class="link-desc">Coming soon</div>
@@ -362,7 +533,9 @@
       </a>
 
       <a href="https://instagram.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-        <div class="link-icon" style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">📷</div>
+        <div class="link-icon" style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2z"/><circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">Instagram</div>
           <div class="link-desc">Coming soon</div>
@@ -370,7 +543,9 @@
       </a>
 
       <a href="https://twitter.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-        <div class="link-icon" style="background: #1DA1F2;">🐦</div>
+        <div class="link-icon" style="background: #1DA1F2;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">X / Twitter</div>
           <div class="link-desc">Coming soon</div>
@@ -378,7 +553,9 @@
       </a>
 
       <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-        <div class="link-icon" style="background: #FF4500;">🤖</div>
+        <div class="link-icon" style="background: #FF4500;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zm-4.5 0a1.5 1.5 0 00-3 0c0 .28.08.54.22.76-1.44.77-3.08 1.24-4.72 1.24s-3.28-.47-4.72-1.24c.14-.22.22-.48.22-.76a1.5 1.5 0 00-3 0c0 .58.33 1.09.82 1.34C3.67 14.5 3 15.7 3 17c0 2.76 4.03 5 9 5s9-2.24 9-5c0-1.3-.67-2.5-1.82-3.66.49-.25.82-.76.82-1.34z"/><path d="M9 16c.83 1.33 2.17 2 3 2s2.17-.67 3-2" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="link-text">
           <div class="link-title">Reddit</div>
           <div class="link-desc">Coming soon</div>
@@ -403,6 +580,8 @@
           <div class="donate-name">Ko-fi</div>
         </a>
       </div>
+
+      <div class="section-divider"></div>
 
       <div class="qr-section">
         <h3 style="text-align: center; margin-bottom: 8px;">📱 Scan to Donate</h3>
@@ -439,6 +618,35 @@
       
       event.target.classList.add('active');
     }
+
+    // Check live status for Chaturbate and Stripchat
+    async function checkLiveStatus() {
+      try {
+        // Note: These are example endpoints - you'll need to find the actual API endpoints
+        // Chaturbate doesn't have a public API, so this is a placeholder
+        // You might need to use a backend service to check status
+        
+        const chaturbateResponse = await fetch('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E9pVl&username=moonsire');
+        const chaturbateData = await chaturbateResponse.json();
+        
+        // Check if user is online
+        if (chaturbateData && chaturbateData.results && chaturbateData.results.length > 0) {
+          document.getElementById('liveBadge').classList.add('show');
+          return;
+        }
+        
+        // If not live on Chaturbate, check Stripchat
+        // Stripchat also doesn't have a simple public API
+        // You would need to implement a backend check or use their affiliate tools
+        
+      } catch (error) {
+        console.log('Could not check live status');
+      }
+    }
+
+    // Check status every 2 minutes
+    checkLiveStatus();
+    setInterval(checkLiveStatus, 120000);
   </script>
 </body>
 </html>
