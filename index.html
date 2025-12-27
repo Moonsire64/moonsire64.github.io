@@ -315,48 +315,6 @@
       text-align: center;
     }
 
-    /* Updated Donate Grid for single row */
-    .donate-grid {
-      display: flex;
-      flex-direction: row;
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-
-    .donate-card {
-      background: 
-        linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
-        radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 12px 8px; /* Compact padding */
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      flex: 1; /* Makes all three equal width */
-      min-width: 0; /* Prevents overflow */
-    }
-
-    .donate-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
-      border-color: rgba(255,255,255,0.3);
-    }
-
-    .donate-icon {
-      font-size: 24px; /* Scaled down */
-      margin-bottom: 6px;
-    }
-
-    .donate-name {
-      font-weight: 700;
-      font-size: 14px; /* Scaled down */
-    }
-
     .section-divider {
       height: 2px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2) 50%, transparent);
@@ -390,8 +348,6 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Removed mobile grid override to keep them in one row */
   </style>
 </head>
 <body>
@@ -450,20 +406,17 @@
     </div>
 
     <div id="donate" class="tab-content">
-      <div class="donate-grid">
-        <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank" class="donate-card">
-          <div class="donate-icon">💳</div>
-          <div class="donate-name">PayPal</div>
-        </a>
-        <a href="https://throne.com/moonsire" target="_blank" class="donate-card">
-          <div class="donate-icon">🎁</div>
-          <div class="donate-name">Throne</div>
-        </a>
-        <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card">
-          <div class="donate-icon">☕</div>
-          <div class="donate-name">Ko-fi</div>
-        </a>
-      </div>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank" class="link-card">
+        <img src="Paypal.png" alt="Paypal" style="width: 100%; max-width: 150px; height: 60px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: saturate(1.5) brightness(1.2);">
+      </a>
+
+      <a href="https://throne.com/moonsire" target="_blank" class="link-card">
+        <img src="Throne.png" alt="Throne" style="width: 100%; max-width: 160px; height: 60px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: brightness(1.3);">
+      </a>
+
+      <a href="https://ko-fi.com/moonsire" target="_blank" class="link-card">
+        <img src="Kofi.png" alt="Ko-fi" style="width: 100%; max-width: 140px; height: 60px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: brightness(1.2);">
+      </a>
 
       <div class="section-divider"></div>
 
