@@ -516,12 +516,20 @@
         }
         animateWave();
 
-        async function checkLiveStatus() {
-            // This function is kept for future automation if you set up a backend later
-            // For now, it does nothing and you'll use bookmarks instead
-            console.log('💡 Use bookmarks to control live badges:');
-            console.log('   🔴 Go Live bookmark - Shows badges');
-            console.log('   ⭕ Go Offline bookmark - Hides badges');
+        // Load saved badge states on page load
+        function loadBadgeStates() {
+            const chaturbateState = localStorage.getItem('chaturbate_live');
+            const stripchatState = localStorage.getItem('stripchat_live');
+            
+            if (chaturbateState === 'true') {
+                document.getElementById('chaturbateLiveBadge').classList.add('show');
+                console.log('✅ Chaturbate badge restored as LIVE');
+            }
+            
+            if (stripchatState === 'true') {
+                document.getElementById('stripchatLiveBadge').classList.add('show');
+                console.log('✅ Stripchat badge restored as LIVE');
+            }
         }
 
         // Manual controls - THIS IS WHAT THE BOOKMARKS USE
@@ -530,23 +538,23 @@
             if (badge) {
                 if (isLive) {
                     badge.classList.add('show');
-                    console.log(`✅ ${platform} badge is now LIVE`);
+                    localStorage.setItem(platform + '_live', 'true');
+                    console.log(`✅ ${platform} badge is now LIVE (saved)`);
                 } else {
                     badge.classList.remove('show');
-                    console.log(`⭕ ${platform} badge is now OFFLINE`);
+                    localStorage.setItem(platform + '_live', 'false');
+                    console.log(`⭕ ${platform} badge is now OFFLINE (saved)`);
                 }
             }
         };
 
-        // Initial check on page load (does nothing for now)
-        checkLiveStatus();
-        
-        // Check every 2 minutes (does nothing for now, but ready for future backend)
-        setInterval(checkLiveStatus, 120000);
+        // Load saved states when page loads
+        loadBadgeStates();
 
         // Show instructions when page loads
         console.log('🎬 Moonsire Live Status System');
         console.log('📌 Use your bookmarks to control live badges!');
+        console.log('💾 Badge states are saved and persist across page reloads');
         console.log('');
         console.log('Manual commands (if needed):');
         console.log('   setLiveBadge("chaturbate", true)  - Show Chaturbate badge');
