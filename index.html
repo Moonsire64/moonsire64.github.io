@@ -1,1 +1,410 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Moonsire - Links</title> <style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #4a2b6f 0%, #1a0b2e 40%, #000000 100%); position: relative; min-height: 100vh; padding: 20px; color: #fff; } body::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 30%, rgba(138, 98, 178, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(100, 60, 140, 0.1) 0%, transparent 50%); pointer-events: none; z-index: 0; } .container { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; } .profile { text-align: center; margin-bottom: 40px; animation: fadeIn 0.6s ease; } .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); margin-bottom: 20px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto; overflow: hidden; } .profile-img img { width: 100%; height: 100%; object-fit: cover; } h1 { font-size: 32px; margin-bottom: 8px; font-weight: 700; } .tagline { font-size: 16px; opacity: 0.9; margin-bottom: 20px; } .nav-tabs { display: flex; gap: 10px; margin-bottom: 30px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 12px; backdrop-filter: blur(10px); } .nav-tab { flex: 1; padding: 12px; background: transparent; border: none; color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 600; cursor: pointer; border-radius: 8px; transition: all 0.3s ease; } .nav-tab.active { background: rgba(255,255,255,0.95); color: #2d1b4e; } .nav-tab:hover:not(.active) { background: rgba(255,255,255,0.15); color: #fff; } .tab-content { display: none; animation: fadeIn 0.4s ease; } .tab-content.active { display: block; } .link-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px; text-decoration: none; display: flex; align-items: center; gap: 16px; transition: all 0.3s ease; color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.3); } .link-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.4); background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.2); } .link-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; } .link-text { flex: 1; } .link-title { font-weight: 700; font-size: 18px; margin-bottom: 4px; } .link-desc { font-size: 14px; color: rgba(255,255,255,0.7); } .schedule-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; margin-bottom: 20px; color: #fff; } .schedule-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #c4b0e8; } .donate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 30px; } .donate-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; text-align: center; text-decoration: none; transition: all 0.3s ease; color: #fff; } .donate-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.4); background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.2); } .donate-icon { font-size: 40px; margin-bottom: 12px; } .donate-name { font-weight: 700; font-size: 16px; } .qr-section { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; margin-bottom: 20px; color: #fff; } .qr-item { text-align: center; } footer { text-align: center; padding: 30px 0 20px; opacity: 0.8; font-size: 14px; } @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } } @media (max-width: 600px) { .donate-grid { grid-template-columns: repeat(2, 1fr); } } </style> </head> <body> <div class="container"> <div class="profile"> <div class="profile-img"> <img src="profile.jpg" alt="Moonsire"> </div> <h1>Moonsire</h1> <p class="tagline">Welcome! Connect with me across platforms</p> </div> <div class="nav-tabs"> <button class="nav-tab active" onclick="switchTab('about')">About</button> <button class="nav-tab" onclick="switchTab('links')">Links</button> <button class="nav-tab" onclick="switchTab('donate')">Donate</button> </div> <div id="about" class="tab-content active"> <div class="schedule-box"> <div class="schedule-title">About Me</div> <p style="line-height: 1.6; color: rgba(255,255,255,0.8);"> <p>Irish man living in Romania<p> <p>179cm/5'11" tall, 62kg<p> <p>Microbiologist by vocation<p> <p>Working as a developer<p> <p>I stream as often as I can manage<p> <p>I want to put my unique brand of intimacy out there for all to enjoy<p> <p>My aim is to provide a safe space where everybody feels welcome<p> </p> </div> </div> <div id="links" class="tab-content"> <a href="https://chaturbate.com/moonsire" target="_blank" class="link-card"> <div class="link-icon" style="background: #F47321;">🎥</div> <div class="link-text"> <div class="link-title">Chaturbate</div> <div class="link-desc">Live streams</div> </div> </a> <a href="https://stripchat.com/Moonsire1" target="_blank" class="link-card"> <div class="link-icon" style="background: #7B68EE;">💜</div> <div class="link-text"> <div class="link-title">Stripchat</div> <div class="link-desc">Live shows</div> </div> </a> <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;"> <div class="link-icon" style="background: #00AFF0;">🔥</div> <div class="link-text"> <div class="link-title">OnlyFans</div> <div class="link-desc">Coming soon</div> </div> </a> <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;"> <div class="link-icon" style="background: #0F7FFF;">💎</div> <div class="link-text"> <div class="link-title">Fansly</div> <div class="link-desc">Coming soon</div> </div> </a> <a href="https://instagram.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;"> <div class="link-icon" style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">📷</div> <div class="link-text"> <div class="link-title">Instagram</div> <div class="link-desc">Coming soon</div> </div> </a> <a href="https://twitter.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;"> <div class="link-icon" style="background: #1DA1F2;">🐦</div> <div class="link-text"> <div class="link-title">X / Twitter</div> <div class="link-desc">Coming soon</div> </div> </a> <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;"> <div class="link-icon" style="background: #FF4500;">🤖</div> <div class="link-text"> <div class="link-title">Reddit</div> <div class="link-desc">Coming soon</div> </div> </a> </div> <div id="donate" class="tab-content"> <div class="donate-grid"> <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank" class="donate-card"> <div class="donate-icon">💳</div> <div class="donate-name">PayPal</div> </a> <a href="https://throne.com/moonsire" target="_blank" class="donate-card"> <div class="donate-icon">🎁</div> <div class="donate-name">Throne</div> </a> <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card"> <div class="donate-icon">☕</div> <div class="donate-name">Ko-fi</div> </a> </div> <div class="qr-section"> <h3 style="text-align: center; margin-bottom: 8px;">📱 Scan to Donate</h3> <p style="text-align: center; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">Open your camera and scan the QR code</p> <div style="display: flex; justify-content: center;"> <div class="qr-item"> <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank"> <div style="width: 140px; height: 140px; border-radius: 12px; background: #fff; padding: 8px; margin: 0 auto;"> <img src="paypal-qr.png" alt="PayPal QR Code" style="width: 100%; height: 100%; display: block;"> </div> </a> <div style="font-weight: 600; margin-top: 8px;">PayPal</div> </div> </div> </div> </div> <footer> <p>© 2025 Moonsire. All rights reserved.</p> </footer> </div> <script> function switchTab(tabName) { document.querySelectorAll('.tab-content').forEach(tab => { tab.classList.remove('active'); }); document.querySelectorAll('.nav-tab').forEach(btn => { btn.classList.remove('active'); }); document.getElementById(tabName).classList.add('active'); event.target.classList.add('active'); } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moonsire - Links</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #4a2b6f 0%, #1a0b2e 40%, #000000 100%);
+      position: relative;
+      min-height: 100vh;
+      padding: 20px;
+      color: #fff;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(138, 98, 178, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(100, 60, 140, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+    }
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      background: rgba(255,255,255,0.1);
+      padding: 8px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-tab {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-tab.active {
+      background: rgba(255,255,255,0.95);
+      color: #2d1b4e;
+    }
+
+    .nav-tab:hover:not(.active) {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.3s ease;
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .link-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .link-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .link-text {
+      flex: 1;
+    }
+
+    .link-title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .link-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .schedule-box {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .schedule-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #c4b0e8;
+    }
+
+    .donate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .donate-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+
+    .donate-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .donate-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .donate-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .qr-section {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .qr-item {
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 20px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .donate-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-img">
+        <img src="profile.jpg" alt="Moonsire">
+      </div>
+      <h1>Moonsire</h1>
+      <p class="tagline">Welcome! Connect with me across platforms</p>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="switchTab('about')">About</button>
+      <button class="nav-tab" onclick="switchTab('links')">Links</button>
+      <button class="nav-tab" onclick="switchTab('donate')">Donate</button>
+    </div>
+
+    <div id="about" class="tab-content active">
+      <div class="schedule-box">
+        <div class="schedule-title">About Me</div>
+        <p style="line-height: 1.6; color: rgba(255,255,255,0.8);">
+          Irish man living in Romania<br>
+          179cm/5'11" tall, 62kg<br>
+          Microbiologist by vocation<br>
+          Working as a developer<br>
+          I stream as often as I can manage<br>
+          I want to put my unique brand of intimacy out there for all to enjoy<br>
+          My aim is to provide a safe space where everybody feels welcome
+        </p>
+      </div>
+    </div>
+
+    <div id="links" class="tab-content">
+      <a href="https://chaturbate.com/moonsire" target="_blank" class="link-card">
+        <div class="link-icon" style="background: #F47321;">🎥</div>
+        <div class="link-text">
+          <div class="link-title">Chaturbate</div>
+          <div class="link-desc">Live streams</div>
+        </div>
+      </a>
+
+      <a href="https://stripchat.com/Moonsire1" target="_blank" class="link-card">
+        <div class="link-icon" style="background: #7B68EE;">💜</div>
+        <div class="link-text">
+          <div class="link-title">Stripchat</div>
+          <div class="link-desc">Live shows</div>
+        </div>
+      </a>
+
+      <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+        <div class="link-icon" style="background: #00AFF0;">🔥</div>
+        <div class="link-text">
+          <div class="link-title">OnlyFans</div>
+          <div class="link-desc">Coming soon</div>
+        </div>
+      </a>
+
+      <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+        <div class="link-icon" style="background: #0F7FFF;">💎</div>
+        <div class="link-text">
+          <div class="link-title">Fansly</div>
+          <div class="link-desc">Coming soon</div>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+        <div class="link-icon" style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">📷</div>
+        <div class="link-text">
+          <div class="link-title">Instagram</div>
+          <div class="link-desc">Coming soon</div>
+        </div>
+      </a>
+
+      <a href="https://twitter.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+        <div class="link-icon" style="background: #1DA1F2;">🐦</div>
+        <div class="link-text">
+          <div class="link-title">X / Twitter</div>
+          <div class="link-desc">Coming soon</div>
+        </div>
+      </a>
+
+      <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+        <div class="link-icon" style="background: #FF4500;">🤖</div>
+        <div class="link-text">
+          <div class="link-title">Reddit</div>
+          <div class="link-desc">Coming soon</div>
+        </div>
+      </a>
+    </div>
+
+    <div id="donate" class="tab-content">
+      <div class="donate-grid">
+        <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank" class="donate-card">
+          <div class="donate-icon">💳</div>
+          <div class="donate-name">PayPal</div>
+        </a>
+
+        <a href="https://throne.com/moonsire" target="_blank" class="donate-card">
+          <div class="donate-icon">🎁</div>
+          <div class="donate-name">Throne</div>
+        </a>
+
+        <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card">
+          <div class="donate-icon">☕</div>
+          <div class="donate-name">Ko-fi</div>
+        </a>
+      </div>
+
+      <div class="qr-section">
+        <h3 style="text-align: center; margin-bottom: 8px;">📱 Scan to Donate</h3>
+        <p style="text-align: center; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">Open your camera and scan the QR code</p>
+        <div style="display: flex; justify-content: center;">
+          <div class="qr-item">
+            <a href="https://www.paypal.com/donate/?hosted_button_id=GFH3YLJTAXKQN" target="_blank">
+              <div style="width: 140px; height: 140px; border-radius: 12px; background: #fff; padding: 8px; margin: 0 auto;">
+                <img src="paypal-qr.png" alt="PayPal QR Code" style="width: 100%; height: 100%; display: block;">
+              </div>
+            </a>
+            <div style="font-weight: 600; margin-top: 8px;">PayPal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Moonsire. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.getElementById(tabName).classList.add('active');
+      
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
