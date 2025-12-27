@@ -517,69 +517,68 @@
         animateWave();
 
         async function checkLiveStatus() {
-            // Try multiple CORS proxies in order
-            const proxies = [
-                'https://api.allorigins.win/raw?url=',
-                'https://corsproxy.io/?',
-                'https://api.codetabs.com/v1/proxy?quest='
-            ];
-
-            // Check Chaturbate
-            for (const proxy of proxies) {
-                try {
-                    const chaturbateUrl = 'https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E9pVl&username=moonsire';
-                    const chaturbateResponse = await fetch(proxy + encodeURIComponent(chaturbateUrl), {
-                        method: 'GET',
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    
-                    if (chaturbateResponse.ok) {
-                        const chaturbateData = await chaturbateResponse.json();
-                        const chaturbateIsLive = chaturbateData && chaturbateData.results && chaturbateData.results.length > 0;
-                        const chaturbateBadge = document.getElementById('chaturbateLiveBadge');
-                        if (chaturbateIsLive) { 
-                            chaturbateBadge.classList.add('show');
-                            console.log('✅ Chaturbate: LIVE');
-                        } else { 
-                            chaturbateBadge.classList.remove('show');
-                            console.log('⭕ Chaturbate: Offline');
-                        }
-                        break; // Success, exit loop
-                    }
-                } catch (error) { 
-                    console.log(`Chaturbate check failed with proxy ${proxy}, trying next...`);
+            try {
+                // Call your PHP backend instead of trying to call APIs directly
+                const response = await fetch('check-live-status.php');
+                
+                if (!response.ok) {
+                    console.log('⚠️ Backend not responding');
+                    return;
                 }
-            }
-
-            // Check Stripchat
-            for (const proxy of proxies) {
-                try {
-                    const stripchatUrl = 'https://stripchat.com/api/vr/v2/models/username/Moonsire1';
-                    const stripchatResponse = await fetch(proxy + encodeURIComponent(stripchatUrl), {
-                        method: 'GET',
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    
-                    if (stripchatResponse.ok) {
-                        const stripchatData = await stripchatResponse.json();
-                        const stripchatIsLive = stripchatData && stripchatData.user && stripchatData.user.isLive === true;
-                        const stripchatBadge = document.getElementById('stripchatLiveBadge');
-                        if (stripchatIsLive) { 
-                            stripchatBadge.classList.add('show');
-                            console.log('✅ Stripchat: LIVE');
-                        } else { 
-                            stripchatBadge.classList.remove('show');
-                            console.log('⭕ Stripchat: Offline');
-                        }
-                        break; // Success, exit loop
-                    }
-                } catch (error) { 
-                    console.log(`Stripchat check failed with proxy ${proxy}, trying next...`);
+                
+                const data = await response.json();
+                
+                // Update Chaturbate badge
+                const chaturbateBadge = document.getElementById('chaturbateLiveBadge');
+                if (data.chaturbate.isLive) {
+                    chaturbateBadge.classList.add('show');
+                    console.log('✅ Chaturbate: LIVE');
+                } else {
+                    chaturbateBadge.classList.remove('show');
+                    console.log('⭕ Chaturbate: Offline');
                 }
+                
+                // Update Stripchat badge
+                const stripchatBadge = document.getElementById('stripchatLiveBadge');
+                if (data.stripchat.isLive) {
+                    stripchatBadge.classList.add('show');
+                    console.log('✅ Stripchat: LIVE');
+                } else {
+                    stripchatBadge.classList.remove('show');
+                    console.log('⭕ Stripchat: Offline');
+                }
+                
+                console.log('Last checked:', data.checked_at);
+                
+            } catch (error) {
+                console.error('Error checking live status:', error);
+                console.log('💡 Make sure check-live-status.php is uploaded to your server');
             }
         }
+
+        // Manual controls for testing/backup
+        window.setLiveBadge = function(platform, isLive) {
+            const badge = document.getElementById(platform + 'LiveBadge');
+            if (badge) {
+                if (isLive) {
+                    badge.classList.add('show');
+                    console.log(`✅ ${platform} badge manually set to LIVE`);
+                } else {
+                    badge.classList.remove('show');
+                    console.log(`⭕ ${platform} badge manually set to OFFLINE`);
+                }
+            }
+        };
+
         checkLiveStatus();
         setInterval(checkLiveStatus, 120000);
+
+        // Log instructions
+        console.log('💡 Manual controls available:');
+        console.log('   setLiveBadge("chaturbate", true)  - Show Chaturbate badge');
+        console.log('   setLiveBadge("chaturbate", false) - Hide Chaturbate badge');
+        console.log('   setLiveBadge("stripchat", true)   - Show Stripchat badge');
+        console.log('   setLiveBadge("stripchat", false)  - Hide Stripchat badge');
     </script>
 </body>
 </html>
