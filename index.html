@@ -138,22 +138,28 @@
             font-size: 32px;
             margin-bottom: 8px;
             font-weight: 700;
+            background: linear-gradient(to bottom, #fff, #c4b0e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .tagline {
             font-size: 16px;
             opacity: 0.9;
             margin-bottom: 20px;
+            color: #e0d5f2;
         }
 
         .nav-tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             padding: 8px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-tab {
@@ -161,25 +167,27 @@
             padding: 12px;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            overflow: hidden;
         }
 
         .nav-tab.active {
             background: rgba(255, 255, 255, 0.95);
             color: #2d1b4e;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
         }
 
         .nav-tab:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
         }
 
         .tab-content {
@@ -188,12 +196,12 @@
 
         .tab-content.active {
             display: block;
-            animation: slideIn 0.4s ease;
+            animation: slideIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .link-card {
@@ -202,29 +210,47 @@
                 radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 24px;
             margin-bottom: 16px;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: visible;
-            min-height: 100px;
+            min-height: 110px;
         }
 
         .link-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(138, 98, 178, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* NEW LIVE BADGE STYLES */
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.6s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
         .live-indicator {
             position: absolute;
             right: 25px;
@@ -232,107 +258,113 @@
             transform: translateY(-50%);
             background: linear-gradient(135deg, #ff4444, #cc0000);
             color: white;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 900;
             display: none;
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.6);
-            animation: blink 1.2s infinite;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+            animation: badgePulse 1.2s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            letter-spacing: 1.5px;
             z-index: 100;
         }
 
-        .live-indicator.show {
-            display: block;
-        }
+        .live-indicator.show { display: block; }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; filter: brightness(1.2); }
-            50% { opacity: 0.7; filter: brightness(1); }
+        @keyframes badgePulse {
+            0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 10px rgba(255, 68, 68, 0.6); }
+            50% { transform: translateY(-50%) scale(1.05); box-shadow: 0 0 25px rgba(255, 68, 68, 0.8); }
+            100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 10px rgba(255, 68, 68, 0.6); }
         }
 
         .schedule-box {
             background: 
                 linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
-                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
+                radial-gradient(circle at top left, rgba(138, 98, 178, 0.1), transparent 50%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 24px;
             color: #fff;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .schedule-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 24px;
             color: #c4b0e8;
-            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .about-text {
+            margin: 16px 0;
+            font-weight: 700;
+            font-size: 18px;
+            background: linear-gradient(90deg, transparent, rgba(196, 176, 232, 0.15), transparent);
+            padding: 12px 0;
+            border-radius: 8px;
+            color: #eee;
         }
 
         .donate-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
         .donate-card {
-            background: 
-                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
-                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
+            background: rgba(74, 43, 111, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
             text-decoration: none;
-            transition: all 0.3s ease;
-            color: #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
         .donate-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
+            transform: translateY(-8px) rotate(2deg);
+            background: rgba(138, 98, 178, 0.3);
             border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
         .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 50%, transparent);
-            margin: 40px 0;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            margin: 50px 0;
+            border: none;
         }
 
         .qr-section {
-            background: 
-                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
-                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 30px;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         footer {
             text-align: center;
-            padding: 30px 0 20px;
-            opacity: 0.8;
-            font-size: 14px;
+            padding: 40px 0;
+            opacity: 0.7;
+            font-size: 15px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -355,12 +387,13 @@
         <div id="about" class="tab-content active">
             <div class="schedule-box">
                 <div class="schedule-title">About Me</div>
-                <p style="margin: 0; font-weight: 700; font-size: 17px;">Irish man living in Romania</p>
-                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">179cm/5'11" - 62kg/137lbs</p>
-                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">Microbiologist by vocation</p>
-                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">Working as a developer</p>
-                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">I stream as often as I can manage</p>
-                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">I want to provide a safe space where everybody feels welcome</p>
+                <p class="about-text">Irish man living in Romania</p>
+                <p class="about-text">179cm/5'11" - 62kg/137lbs</p>
+                <p class="about-text">Microbiologist by vocation</p>
+                <p class="about-text">Working as a developer</p>
+                <p class="about-text">I stream as often as I can manage</p>
+                <p class="about-text">My aim is to provide a safe space where everybody feels welcome</p>
+                <p style="margin-top: 20px; font-style: italic; opacity: 0.8;">"I want to put my unique brand of intimacy out there for all to enjoy"</p>
             </div>
         </div>
 
@@ -375,44 +408,66 @@
                 <div class="live-indicator" id="sc-live">LIVE</div>
             </a>
 
-            <div class="section-divider"></div>
+            <hr class="section-divider">
 
-            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none; cursor: default;">
                 <img src="Onlyfans.png" alt="OnlyFans" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; filter: saturate(1.7) brightness(1.4);">
-            </a>
-            <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-                <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 200px; height: 50px; mix-blend-mode: screen; filter: brightness(1.3);">
+                <div style="position: absolute; bottom: 10px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">COMING SOON</div>
             </a>
 
-            <div class="section-divider"></div>
+            <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none; cursor: default;">
+                <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 200px; height: 50px; mix-blend-mode: screen; filter: brightness(1.3);">
+                <div style="position: absolute; bottom: 10px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">COMING SOON</div>
+            </a>
+
+            <hr class="section-divider">
 
             <div class="donate-grid">
-                <a href="https://instagram.com/moonsire" target="_blank" class="donate-card"><img src="Instagram.png" style="width: 60px; mix-blend-mode: screen;"></a>
-                <a href="https://twitter.com/moonsire" target="_blank" class="donate-card"><img src="X.png" style="width: 70px; mix-blend-mode: screen;"></a>
-                <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="donate-card"><img src="Reddit.png" style="width: 60px; mix-blend-mode: screen;"></a>
+                <a href="https://instagram.com/moonsire" target="_blank" class="donate-card">
+                    <img src="Instagram.png" style="width: 60px; height: auto; mix-blend-mode: screen; transition: 0.3s;">
+                </a>
+                <a href="https://twitter.com/moonsire" target="_blank" class="donate-card">
+                    <img src="X.png" style="width: 70px; height: auto; mix-blend-mode: screen; transition: 0.3s;">
+                </a>
+                <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="donate-card">
+                    <img src="Reddit.png" style="width: 60px; height: auto; mix-blend-mode: screen; transition: 0.3s;">
+                </a>
             </div>
         </div>
 
         <div id="donate" class="tab-content">
             <div class="donate-grid">
-                <a href="https://www.paypal.com/donate/" target="_blank" class="donate-card"><img src="Paypal.png" style="width: 100%; mix-blend-mode: screen;"></a>
-                <a href="https://throne.com/moonsire" target="_blank" class="donate-card"><img src="Throne.png" style="width: 100%; mix-blend-mode: screen;"></a>
-                <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card"><img src="Ko-fi.png" style="width: 100%; mix-blend-mode: screen;"></a>
+                <a href="https://www.paypal.com/donate/" target="_blank" class="donate-card">
+                    <img src="Paypal.png" style="width: 100%; max-height: 40px; object-fit: contain; mix-blend-mode: screen;">
+                </a>
+                <a href="https://throne.com/moonsire" target="_blank" class="donate-card">
+                    <img src="Throne.png" style="width: 100%; max-height: 40px; object-fit: contain; mix-blend-mode: screen;">
+                </a>
+                <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card">
+                    <img src="Ko-fi.png" style="width: 100%; max-height: 40px; object-fit: contain; mix-blend-mode: screen;">
+                </a>
             </div>
+            
             <div class="qr-section">
-                <h3 style="text-align: center; margin-bottom: 20px;">📱 Scan to Donate</h3>
-                <div style="display: flex; justify-content: center;">
-                    <div style="width: 140px; height: 140px; border-radius: 12px; background: #fff; padding: 8px;">
-                        <img src="paypal-qr.png" style="width: 100%;">
+                <h3 style="text-align: center; margin-bottom: 25px; font-size: 20px; color: #c4b0e8;">📱 Scan to Support</h3>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="width: 160px; height: 160px; border-radius: 16px; background: #fff; padding: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+                            <img src="paypal-qr.png" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <p style="margin-top: 10px; font-size: 14px; font-weight: bold;">PayPal</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <footer><p>© 2025 Moonsire. All rights reserved.</p></footer>
+        <footer>
+            <p>© 2025 Moonsire. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
+        // Tab switching logic
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
@@ -420,32 +475,38 @@
             event.currentTarget.classList.add('active');
         }
 
+        // Background Animation Logic (Original)
         let waveX = 50, waveY = 50, vX = 0.1, vY = 0.1;
         function animate() {
             waveX += vX; waveY += vY;
-            if (waveX > 90 || waveX < 10) vX *= -1;
-            if (waveY > 90 || waveY < 10) vY *= -1;
+            if (waveX > 92 || waveX < 8) vX *= -1;
+            if (waveY > 92 || waveY < 8) vY *= -1;
             document.documentElement.style.setProperty('--wave-x', waveX + '%');
             document.documentElement.style.setProperty('--wave-y', waveY + '%');
             requestAnimationFrame(animate);
         }
         animate();
 
+        // LIVE CHECKER LOGIC
         async function checkLive() {
             try {
-                // Chaturbate
+                // Chaturbate Status
                 const cbRes = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E9pVl&username=moonsire'));
                 const cbData = await cbRes.json();
                 const cbJson = JSON.parse(cbData.contents);
                 document.getElementById('cb-live').classList.toggle('show', cbJson.results && cbJson.results.length > 0);
 
-                // Stripchat
+                // Stripchat Status
                 const scRes = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://stripchat.com/api/front/v2/models/username/Moonsire1/status'));
                 const scData = await scRes.json();
                 const scJson = JSON.parse(scData.contents);
                 document.getElementById('sc-live').classList.toggle('show', scJson.status === 'live' || scJson.status === 'public');
-            } catch (e) { console.error("Check failed"); }
+            } catch (e) { 
+                console.error("Connection to status APIs failed."); 
+            }
         }
+        
+        // Run immediately and then every 45 seconds
         checkLive();
         setInterval(checkLive, 45000);
     </script>
