@@ -134,8 +134,17 @@
             object-fit: cover;
         }
 
-        h1 { font-size: 32px; margin-bottom: 8px; font-weight: 700; }
-        .tagline { font-size: 16px; opacity: 0.9; margin-bottom: 20px; }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
 
         .nav-tabs {
             display: flex;
@@ -158,15 +167,39 @@
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-tab.active { background: rgba(255, 255, 255, 0.95); color: #2d1b4e; }
+        .nav-tab.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d1b4e;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: slideIn 0.4s ease; }
+        .nav-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .link-card {
-            background: linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%);
+            background: 
+                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
+                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
@@ -176,35 +209,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            gap: 16px;
             transition: all 0.3s ease;
             color: #fff;
-            min-height: 100px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
             overflow: visible;
+            min-height: 100px;
         }
 
-        .link-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.3); }
+        .link-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-        /* LIVE BADGE STYLE - POSITIONED TO THE RIGHT */
+        /* NEW LIVE BADGE STYLES */
         .live-indicator {
             position: absolute;
-            right: -10px;
-            top: -10px;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
             background: linear-gradient(135deg, #ff4444, #cc0000);
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 900;
             display: none;
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
-            animation: blink 1.5s infinite;
-            z-index: 10;
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.6);
+            animation: blink 1.2s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            z-index: 100;
         }
-        .live-indicator.show { display: block; }
+
+        .live-indicator.show {
+            display: block;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.7; filter: brightness(1); }
+        }
 
         .schedule-box {
-            background: linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%);
+            background: 
+                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
+                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
@@ -214,16 +266,32 @@
             text-align: center;
         }
 
-        .donate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
+        .schedule-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #c4b0e8;
+            text-align: center;
+        }
+
+        .donate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
         .donate-card {
-            background: rgba(74, 43, 111, 0.3);
+            background: 
+                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
+                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 24px;
             text-align: center;
             text-decoration: none;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -231,20 +299,49 @@
             justify-content: center;
         }
 
-        .section-divider { height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 50%, transparent); margin: 40px 0; }
-        .qr-section { background: rgba(74, 43, 111, 0.3); border-radius: 16px; padding: 24px; color: #fff; }
+        .donate-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 50%, transparent);
+            margin: 40px 0;
+        }
 
-        footer { text-align: center; padding: 30px 0; opacity: 0.8; font-size: 14px; }
+        .qr-section {
+            background: 
+                linear-gradient(135deg, rgba(74, 43, 111, 0.3) 0%, rgba(26, 11, 46, 0.4) 40%, rgba(0, 0, 0, 0.5) 100%),
+                radial-gradient(circle at top left, rgba(138, 98, 178, 0.08), transparent 50%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0 20px;
+            opacity: 0.8;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile">
-            <div class="profile-img"><img src="profile.jpg" alt="Moonsire"></div>
+            <div class="profile-img">
+                <img src="profile.jpg" alt="Moonsire">
+            </div>
             <h1>Moonsire</h1>
             <p class="tagline">Welcome! Connect with me across platforms</p>
         </div>
@@ -257,13 +354,13 @@
 
         <div id="about" class="tab-content active">
             <div class="schedule-box">
-                <div style="font-size: 22px; font-weight: 700; margin-bottom: 16px; color: #c4b0e8;">About Me</div>
-                <p style="margin-bottom: 12px; font-weight: 700;">Irish man living in Romania</p>
-                <p style="margin-bottom: 12px; font-weight: 700;">179cm/5'11" - 62kg/137lbs</p>
-                <p style="margin-bottom: 12px; font-weight: 700;">Microbiologist by vocation</p>
-                <p style="margin-bottom: 12px; font-weight: 700;">Working as a developer</p>
-                <p style="margin-bottom: 12px; font-weight: 700;">I stream as often as I can manage</p>
-                <p>I want to put my unique brand of intimacy out there for all to enjoy</p>
+                <div class="schedule-title">About Me</div>
+                <p style="margin: 0; font-weight: 700; font-size: 17px;">Irish man living in Romania</p>
+                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">179cm/5'11" - 62kg/137lbs</p>
+                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">Microbiologist by vocation</p>
+                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">Working as a developer</p>
+                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">I stream as often as I can manage</p>
+                <p style="margin: 12px 0; font-weight: 700; font-size: 17px;">I want to provide a safe space where everybody feels welcome</p>
             </div>
         </div>
 
@@ -272,7 +369,7 @@
                 <img src="Chaturbate.png" alt="Chaturbate" style="width: 100%; max-width: 250px; height: 75px; mix-blend-mode: screen;">
                 <div class="live-indicator" id="cb-live">LIVE</div>
             </a>
-
+            
             <a href="https://stripchat.com/Moonsire1" target="_blank" class="link-card">
                 <img src="Stripchat.png" alt="Stripchat" style="width: 100%; max-width: 275px; height: 60px; mix-blend-mode: screen; filter: saturate(1.7) brightness(1.3);">
                 <div class="live-indicator" id="sc-live">LIVE</div>
@@ -281,31 +378,31 @@
             <div class="section-divider"></div>
 
             <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-                <img src="Onlyfans.png" alt="OnlyFans" style="max-width: 250px; height: 55px; mix-blend-mode: screen;">
+                <img src="Onlyfans.png" alt="OnlyFans" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; filter: saturate(1.7) brightness(1.4);">
             </a>
             <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
-                <img src="Fansly.png" alt="Fansly" style="max-width: 200px; height: 50px; mix-blend-mode: screen;">
+                <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 200px; height: 50px; mix-blend-mode: screen; filter: brightness(1.3);">
             </a>
 
             <div class="section-divider"></div>
 
             <div class="donate-grid">
-                <a href="https://instagram.com/moonsire" class="donate-card"><img src="Instagram.png" style="width: 60px; mix-blend-mode: screen;"></a>
-                <a href="https://twitter.com/moonsire" class="donate-card"><img src="X.png" style="width: 70px; mix-blend-mode: screen;"></a>
-                <a href="https://reddit.com/u/bigcocksixpack" class="donate-card"><img src="Reddit.png" style="width: 60px; mix-blend-mode: screen;"></a>
+                <a href="https://instagram.com/moonsire" target="_blank" class="donate-card"><img src="Instagram.png" style="width: 60px; mix-blend-mode: screen;"></a>
+                <a href="https://twitter.com/moonsire" target="_blank" class="donate-card"><img src="X.png" style="width: 70px; mix-blend-mode: screen;"></a>
+                <a href="https://reddit.com/u/bigcocksixpack" target="_blank" class="donate-card"><img src="Reddit.png" style="width: 60px; mix-blend-mode: screen;"></a>
             </div>
         </div>
 
         <div id="donate" class="tab-content">
             <div class="donate-grid">
-                <a href="https://paypal.me/" class="donate-card"><img src="Paypal.png" style="width: 100%; mix-blend-mode: screen;"></a>
-                <a href="https://throne.com/moonsire" class="donate-card"><img src="Throne.png" style="width: 100%; mix-blend-mode: screen;"></a>
-                <a href="https://ko-fi.com/moonsire" class="donate-card"><img src="Ko-fi.png" style="width: 100%; mix-blend-mode: screen;"></a>
+                <a href="https://www.paypal.com/donate/" target="_blank" class="donate-card"><img src="Paypal.png" style="width: 100%; mix-blend-mode: screen;"></a>
+                <a href="https://throne.com/moonsire" target="_blank" class="donate-card"><img src="Throne.png" style="width: 100%; mix-blend-mode: screen;"></a>
+                <a href="https://ko-fi.com/moonsire" target="_blank" class="donate-card"><img src="Ko-fi.png" style="width: 100%; mix-blend-mode: screen;"></a>
             </div>
             <div class="qr-section">
                 <h3 style="text-align: center; margin-bottom: 20px;">📱 Scan to Donate</h3>
                 <div style="display: flex; justify-content: center;">
-                    <div style="width: 140px; height: 140px; background: #fff; padding: 8px; border-radius: 12px;">
+                    <div style="width: 140px; height: 140px; border-radius: 12px; background: #fff; padding: 8px;">
                         <img src="paypal-qr.png" style="width: 100%;">
                     </div>
                 </div>
@@ -323,9 +420,7 @@
             event.currentTarget.classList.add('active');
         }
 
-        // Animated background logic
-        let waveX = 50, waveY = 50;
-        let vX = 0.1, vY = 0.1;
+        let waveX = 50, waveY = 50, vX = 0.1, vY = 0.1;
         function animate() {
             waveX += vX; waveY += vY;
             if (waveX > 90 || waveX < 10) vX *= -1;
@@ -338,21 +433,21 @@
 
         async function checkLive() {
             try {
-                // Chaturbate Check
-                const cb = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E9pVl&username=moonsire'));
-                const cbData = await cb.json();
+                // Chaturbate
+                const cbRes = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=E9pVl&username=moonsire'));
+                const cbData = await cbRes.json();
                 const cbJson = JSON.parse(cbData.contents);
                 document.getElementById('cb-live').classList.toggle('show', cbJson.results && cbJson.results.length > 0);
 
-                // Stripchat Check
-                const sc = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://stripchat.com/api/front/v2/models/username/Moonsire1/status'));
-                const scData = await sc.json();
+                // Stripchat
+                const scRes = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://stripchat.com/api/front/v2/models/username/Moonsire1/status'));
+                const scData = await scRes.json();
                 const scJson = JSON.parse(scData.contents);
-                document.getElementById('sc-live').classList.toggle('show', scJson.status === 'live');
-            } catch (e) { console.error("Update failed"); }
+                document.getElementById('sc-live').classList.toggle('show', scJson.status === 'live' || scJson.status === 'public');
+            } catch (e) { console.error("Check failed"); }
         }
         checkLive();
-        setInterval(checkLive, 60000);
+        setInterval(checkLive, 45000);
     </script>
 </body>
 </html>
