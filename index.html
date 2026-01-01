@@ -346,12 +346,34 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .donate-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 24px rgba(138, 98, 178, 0.4);
             border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .donate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .donate-card:hover::before {
+            left: 100%;
         }
 
         .donate-icon {
@@ -444,10 +466,10 @@
 
             <div class="section-divider"></div>
 
-            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none; position: relative;">
                 <img src="Onlyfans.png" alt="OnlyFans" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: saturate(1.7) brightness(1.4);">
             </a>
-            <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none;">
+            <a href="https://fansly.com/moonsire" target="_blank" class="link-card" style="opacity: 0.6; pointer-events: none; position: relative;">
                 <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 200px; height: 50px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: brightness(1.3);">
             </a>
 
@@ -576,16 +598,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
