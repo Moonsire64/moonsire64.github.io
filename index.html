@@ -455,26 +455,53 @@
         </div>
 
         <div id="links" class="tab-content">
+            <div class="section-divider"></div>
+
+            <!-- Streaming Platforms -->
             <a href="https://chaturbate.com/moonsire" target="_blank" class="link-card" style="position: relative;">
-                <img src="Chaturbate.png" alt="Chaturbate" style="width: 100%; max-width: 250px; height: 75px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <img src="Chaturbate.png" alt="Chaturbate" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
                 <div class="live-badge" id="chaturbateLiveBadge">Live Now</div>
             </a>
             <a href="https://stripchat.com/Moonsire1" target="_blank" class="link-card" style="position: relative;">
-                <img src="Stripchat.png" alt="Stripchat" style="width: 100%; max-width: 275px; height: 60px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: saturate(1.7) brightness(1.3);">
+                <img src="Stripchat.png" alt="Stripchat" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
                 <div class="live-badge" id="stripchatLiveBadge">Live Now</div>
             </a>
-
-            <div class="section-divider"></div>
-
-            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="position: relative;">
-                <img src="Onlyfans.png" alt="OnlyFans" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: saturate(1.7) brightness(1.4);">
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="LiveJasmin.png" alt="LiveJasmin" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="livejasminLiveBadge">Live Now</div>
+            </a>
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="Cam4.png" alt="Cam4" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="cam4LiveBadge">Live Now</div>
+            </a>
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="BongaCams.png" alt="BongaCams" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="bongacamsLiveBadge">Live Now</div>
+            </a>
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="CamSoda.png" alt="CamSoda" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="camsodaLiveBadge">Live Now</div>
+            </a>
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="MyFreeCams.png" alt="MyFreeCams" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="myfreecamsLiveBadge">Live Now</div>
+            </a>
+            <a href="#" target="_blank" class="link-card" style="position: relative;">
+                <img src="RedGifs.png" alt="RedGifs" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="redgifsLiveBadge">Live Now</div>
             </a>
             <a href="https://fansly.com/Moonsire" target="_blank" class="link-card" style="position: relative;">
-                <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 200px; height: 50px; mix-blend-mode: screen; display: block; margin: 0 auto; filter: brightness(1.3);">
+                <img src="Fansly.png" alt="Fansly" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="fanslyLiveBadge">Live Now</div>
+            </a>
+            <a href="https://onlyfans.com/moonsire" target="_blank" class="link-card" style="position: relative;">
+                <img src="Onlyfans.png" alt="OnlyFans" style="width: 100%; max-width: 250px; height: 55px; mix-blend-mode: screen; display: block; margin: 0 auto;">
+                <div class="live-badge" id="onlyfansLiveBadge">Live Now</div>
             </a>
 
             <div class="section-divider"></div>
 
+            <!-- Social Media -->
             <div class="donate-grid">
                 <a href="https://www.instagram.com/moonsire1" target="_blank" class="donate-card" style="min-height: 100px; padding: 12px;">
                     <img src="Instagram.png" alt="Instagram" style="width: 60px; height: 60px; mix-blend-mode: screen; filter: saturate(1.7) brightness(1.4);">
@@ -520,7 +547,7 @@
         </div>
 
         <footer>
-            <p>© 2025 Moonsire. All rights reserved.</p>
+            <p>© 2026 Moonsire. All rights reserved.</p>
         </footer>
     </div>
 
@@ -552,18 +579,18 @@
 
         // Load saved badge states on page load
         function loadBadgeStates() {
-            const chaturbateState = localStorage.getItem('chaturbate_live');
-            const stripchatState = localStorage.getItem('stripchat_live');
+            const platforms = ['chaturbate', 'stripchat', 'livejasmin', 'cam4', 'bongacams', 'camsoda', 'myfreecams', 'onlyfans', 'fansly', 'redgifs'];
             
-            if (chaturbateState === 'true') {
-                document.getElementById('chaturbateLiveBadge').classList.add('show');
-                console.log('✅ Chaturbate badge restored as LIVE');
-            }
-            
-            if (stripchatState === 'true') {
-                document.getElementById('stripchatLiveBadge').classList.add('show');
-                console.log('✅ Stripchat badge restored as LIVE');
-            }
+            platforms.forEach(platform => {
+                const state = localStorage.getItem(platform + '_live');
+                if (state === 'true') {
+                    const badge = document.getElementById(platform + 'LiveBadge');
+                    if (badge) {
+                        badge.classList.add('show');
+                        console.log(`✅ ${platform} badge restored as LIVE`);
+                    }
+                }
+            });
         }
 
         // Manual controls - THIS IS WHAT THE BOOKMARKS USE
@@ -591,12 +618,16 @@
         console.log('💾 Badge states are saved and persist across page reloads');
         console.log('');
         console.log('Manual commands (if needed):');
-        console.log('   setLiveBadge("chaturbate", true)  - Show Chaturbate badge');
-        console.log('   setLiveBadge("chaturbate", false) - Hide Chaturbate badge');
-        console.log('   setLiveBadge("stripchat", true)   - Show Stripchat badge');
-        console.log('   setLiveBadge("stripchat", false)  - Hide Stripchat badge');
+        console.log('   setLiveBadge("chaturbate", true/false)');
+        console.log('   setLiveBadge("stripchat", true/false)');
+        console.log('   setLiveBadge("livejasmin", true/false)');
+        console.log('   setLiveBadge("cam4", true/false)');
+        console.log('   setLiveBadge("bongacams", true/false)');
+        console.log('   setLiveBadge("camsoda", true/false)');
+        console.log('   setLiveBadge("myfreecams", true/false)');
+        console.log('   setLiveBadge("onlyfans", true/false)');
+        console.log('   setLiveBadge("fansly", true/false)');
+        console.log('   setLiveBadge("redgifs", true/false)');
     </script>
 </body>
 </html>
-
-
