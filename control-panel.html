@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonsire - Control Panel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:wght@500,600,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .info-box h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .info-box ol {
+            margin-left: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .info-box a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+
+        .sheet-link {
+            display: block;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .sheet-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .platform-row {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .status-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-badge.live {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-badge.offline {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .refresh-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .last-update {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .warning {
+            background: rgba(255, 165, 0, 0.2);
+            border-left: 4px solid orange;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Control Panel</h1>
+        <p class="subtitle">Manage your live streaming status</p>
+
+        <div class="info-box">
+            <h3>📝 How to Update Live Status</h3>
+            <ol>
+                <li>Click the button below to open your Google Sheet</li>
+                <li>Change "FALSE" to "TRUE" for platforms you're live on</li>
+                <li>Change "TRUE" to "FALSE" when you go offline</li>
+                <li>All visitors will see the updates within 60 seconds!</li>
+            </ol>
+        </div>
+
+        <a href="https://docs.google.com/spreadsheets/d/1bB5G9DBKRbZo6D1qy6ZB_Eq6E_aZ-pMIibCaW3EnKgs/edit" target="_blank" class="sheet-link">
+            📊 Open Google Sheet
+        </a>
+
+        <div class="warning">
+            <strong>⚠️ Note:</strong> You need to be signed in to Google and have edit access to the sheet above.
+        </div>
+
+        <h3 style="margin-bottom: 16px; font-size: 18px;">Current Status:</h3>
+        
+        <div class="platform-grid" id="platformGrid">
+            <!-- Will be populated by JavaScript -->
+        </div>
+
+        <button class="refresh-btn" onclick="fetchLiveStatus()">🔄 Refresh Status</button>
+        
+        <div class="last-update" id="lastUpdate">Last updated: Never</div>
+    </div>
+
+    <script>
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTZRUSOL2s2Z4Mzg7GhFOvmh2lCGmNMJv9dnxsiM0k_VI2JZvDAcIBJ3OuaobN18Ww-a0jx8-B_5shG/pub?output=csv';
+        
+        const platformNames = {
+            'chaturbate': 'Chaturbate',
+            'stripchat': 'Stripchat',
+            'cam4': 'Cam4',
+            'bongacams': 'BongaCams',
+            'camsoda': 'CamSoda',
+            'myfreecams': 'MyFreeCams',
+            'onlyfans': 'OnlyFans',
+            'fansly': 'Fansly'
+        };
+
+        // Parse CSV data
+        function parseCSV(text) {
+            const lines = text.trim().split('\n');
+            const result = {};
+            
+            for (let i = 1; i < lines.length; i++) {
+                const [platform, status] = lines[i].split(',');
+                if (platform && status) {
+                    result[platform.toLowerCase().trim()] = status.toUpperCase().trim() === 'TRUE';
+                }
+            }
+            
+            return result;
+        }
+
+        // Display platform statuses
+        function displayStatuses(statusData) {
+            const grid = document.getElementById('platformGrid');
+            grid.innerHTML = '';
+
+            Object.keys(platformNames).forEach(key => {
+                const isLive = statusData[key] || false;
+                
+                const row = document.createElement('div');
+                row.className = 'platform-row';
+                
+                row.innerHTML = `
+                    <div class="platform-name">${platformNames[key]}</div>
+                    <div class="status-badge ${isLive ? 'live' : 'offline'}">
+                        ${isLive ? '● Live Now' : 'Offline'}
+                    </div>
+                `;
+                
+                grid.appendChild(row);
+            });
+
+            // Update last update time
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = 
+                `Last updated: ${now.toLocaleTimeString()}`;
+        }
+
+        // Fetch live status from Google Sheets
+        async function fetchLiveStatus() {
+            try {
+                const response = await fetch(SHEET_URL + '&t=' + Date.now());
+                const csvText = await response.text();
+                const statusData = parseCSV(csvText);
+                displayStatuses(statusData);
+                console.log('✅ Status refreshed');
+            } catch (error) {
+                console.error('❌ Error fetching status:', error);
+                alert('Failed to fetch status. Please try again.');
+            }
+        }
+
+        // Initial fetch
+        fetchLiveStatus();
+
+        // Auto-refresh every 60 seconds
+        setInterval(fetchLiveStatus, 60000);
+    </script>
+</body>
+</html>
