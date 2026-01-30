@@ -568,71 +568,66 @@
         }
         animateWave();
 
-        // Load saved badge states on page load
-        function loadBadgeStates() {
-            const platforms = ['chaturbate', 'stripchat', 'livejasmin', 'cam4', 'bongacams', 'camsoda', 'myfreecams', 'onlyfans', 'fansly', 'redgifs'];
+        // ============================================
+        // GOOGLE SHEETS LIVE STATUS SYSTEM
+        // ============================================
+        
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTZRUSOL2s2Z4Mzg7GhFOvmh2lCGmNMJv9dnxsiM0k_VI2JZvDAcIBJ3OuaobN18Ww-a0jx8-B_5shG/pub?output=csv';
+        
+        // Parse CSV data
+        function parseCSV(text) {
+            const lines = text.trim().split('\n');
+            const result = {};
             
-            platforms.forEach(platform => {
-                const state = localStorage.getItem(platform + '_live');
-                if (state === 'true') {
-                    const badge = document.getElementById(platform + 'LiveBadge');
-                    if (badge) {
+            // Skip header row, start from index 1
+            for (let i = 1; i < lines.length; i++) {
+                const [platform, status] = lines[i].split(',');
+                if (platform && status) {
+                    result[platform.toLowerCase().trim()] = status.toUpperCase().trim() === 'TRUE';
+                }
+            }
+            
+            return result;
+        }
+        
+        // Update live badges based on status
+        function updateLiveBadges(statusData) {
+            Object.keys(statusData).forEach(platform => {
+                const badge = document.getElementById(platform + 'LiveBadge');
+                if (badge) {
+                    if (statusData[platform]) {
                         badge.classList.add('show');
-                        console.log(`✅ ${platform} badge restored as LIVE`);
+                        console.log(`✅ ${platform} is LIVE`);
+                    } else {
+                        badge.classList.remove('show');
+                        console.log(`⭕ ${platform} is OFFLINE`);
                     }
                 }
             });
         }
-
-        // Manual controls - THIS IS WHAT THE BOOKMARKS USE
-        window.setLiveBadge = function(platform, isLive) {
-            const badge = document.getElementById(platform + 'LiveBadge');
-            if (badge) {
-                if (isLive) {
-                    badge.classList.add('show');
-                    localStorage.setItem(platform + '_live', 'true');
-                    console.log(`✅ ${platform} badge is now LIVE (saved)`);
-                } else {
-                    badge.classList.remove('show');
-                    localStorage.setItem(platform + '_live', 'false');
-                    console.log(`⭕ ${platform} badge is now OFFLINE (saved)`);
-                }
+        
+        // Fetch live status from Google Sheets
+        async function fetchLiveStatus() {
+            try {
+                const response = await fetch(SHEET_URL + '&t=' + Date.now()); // Cache busting
+                const csvText = await response.text();
+                const statusData = parseCSV(csvText);
+                updateLiveBadges(statusData);
+                console.log('📊 Live status updated from Google Sheets');
+            } catch (error) {
+                console.error('❌ Error fetching live status:', error);
             }
-        };
-
-        // Load saved states when page loads
-        loadBadgeStates();
-
-        // Show instructions when page loads
+        }
+        
+        // Initial fetch
+        fetchLiveStatus();
+        
+        // Poll every 60 seconds (60000 milliseconds)
+        setInterval(fetchLiveStatus, 60000);
+        
         console.log('🎬 Moonsire Live Status System');
-        console.log('📌 Use your bookmarks to control live badges!');
-        console.log('💾 Badge states are saved and persist across page reloads');
-        console.log('');
-        console.log('Manual commands (if needed):');
-        console.log('   setLiveBadge("chaturbate", true/false)');
-        console.log('   setLiveBadge("stripchat", true/false)');
-        console.log('   setLiveBadge("cam4", true/false)');
-        console.log('   setLiveBadge("bongacams", true/false)');
-        console.log('   setLiveBadge("camsoda", true/false)');
-        console.log('   setLiveBadge("myfreecams", true/false)');
-        console.log('   setLiveBadge("onlyfans", true/false)');
-        console.log('   setLiveBadge("fansly", true/false)');
+        console.log('📊 Checking Google Sheets every 60 seconds for live status');
+        console.log('📝 Edit your Google Sheet to update live badges for all visitors!');
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
