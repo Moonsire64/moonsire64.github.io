@@ -322,10 +322,17 @@
             color: #c4b0e8;
             text-align: center;
         }
-
-        .donate-grid {
+                                        
+        .social-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+                                        
+        .donate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-bottom: 30px;
         }
@@ -636,6 +643,7 @@
     </script>
 </body>
 </html>
+
 
 
 
